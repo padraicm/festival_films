@@ -40,7 +40,7 @@ a {
   text-align: center;
   font-size: 1.2em;
   background: #00cbff;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   background: #07a566;
   
   a {
@@ -58,92 +58,79 @@ a {
   }
 }
 
+.navigation {
+  font-size: 1.3em;
+  text-transform: uppercase;
+  background: #4b2979;
+  text-align: center;
+  margin-bottom: 10px;
+  
+  li { 
+    display: inline-block;
+    padding: 10px;
+    a {
+      text-decoration: none;
+      color: #edfff0;
+    }
+  }
+}
+
 /* -------------------------------- 
 
 Main Components 
 
 -------------------------------- */
-.cd-schedule {
-	position: relative;
-  
 
-	&::before {
-		/* never visible - this is used in js to check the current MQ */ 
-		content: 'mobile';
-		display: none;
-	}
-
+.container {
+  margin: 0 10%;
+  padding: 0.8em;
 }
 
-.cd-schedule .timeline {
-	display: none;
 
-}
 
-.cd-schedule .events {
+.films {
 	position: relative;
 	z-index: 1;
+  display: flex;
+  flex-flow: row wrap;
+  overflow-x: visible;
+  align-content: flex-end;
+  align-items: top;
+  justify-content: center;
 
-	.events-group {
-		margin-bottom: 30px;
-	}
-
-	.top-info {
-		width: 100%;
-		padding: 0 5%;
-
-		> span {
-			display: inline-block;
-			line-height: 1.2;
-			margin-bottom: 10px;
-			font-weight: bold;
-		}
-	}
-
-	.events-group > ul {
-		position: relative;
-		padding: 0 5%;
-		/* force its children to stay on one line */
-		display: block;
-		overflow-x: visible;
-		-webkit-overflow-scrolling: touch;
-
-		&::after {
-			/* never visible - used to add a right padding to .events-group > ul */
-			display: inline-block;
-			content: '-';
-			width: 1px;
-			height: 100%;
-			opacity: 0;
-			color: transparent;
-		}
-	}
-
-	.single-event {
-		/* force them to stay on one line */
-		flex-shrink: 0;
-
+	.film {
+		flex-shrink: 1;
+    background: white;
+    
 		float: left;
 		min-height: 120px;
-		width: 100%;
-    //    max-width: 300px;
+    min-width: 400px;
+		max-width: 500px;
     border: 1px solid rgba(0,0,0,0.4);
 		margin-right: 20px;
+    margin-bottom: 20px;
 		transition: opacity .2s, background .2s;
-    margin-bottom: 5px;
     background: white;
+    padding: .8em;
+    box-shadow: 5px 5px 1px #4b2979;
 
 		&:last-of-type {
 			margin-right: 5%;
 		}
 		
-		.event-clickable {
+		.film-clickable {
 			display: block;
 			height: 100%;
-			padding: .8em;
 		}
     
-    .event-ticket {
+    .film-ticket-name {
+      display: block;
+      float: right;
+      text-align: center;
+      padding: 8px 10px;
+    }
+    
+    .film-ticket {
     	display: block;
     	color: white;
       float:right;
@@ -163,30 +150,27 @@ Main Components
 }
 
 .cd-schedule.loading .events .single-event {
-	/* the class .loading is added by default to the .cd-schedule element
+	/* the class .loading is added by default to the element
 	   it is removed as soon as the single events are placed in the schedule plan (using javascript) */
 	opacity: 0;
 }
 
-.cd-schedule .event-name,
-.cd-schedule .event-date,
-.cd-schedule .event-venue,
-.cd-schedule .event-subline {
+.film-name,
+.film-date,
+.film-venue,
+.film-subline {
 	display: block;
 	@include font-smoothing;
 }
 
-.cd-schedule .event-subline {
+.film-subline {
   font-size: 0.8em;
   font-style: italic;
 }
 
-.cd-schedule .event-data {
-  display: none;
-}
 
 //modal
-.event-info {
+.film-info {
   font-size: 1.25em;
   padding: 20px 55px;
   word-break: break-word;
@@ -209,25 +193,37 @@ Main Components
   
 }
 
-.cd-schedule .event-name .event-time {
+.film-name .film-time {
   font-size: 1.6rem;
   display: block;
   margin-bottom: 12px;
   opacity: 0.7;
 }
 
-.cd-schedule .event-name {
+.film-name {
 	font-size: 2.4rem;
   clear: both;
-  margin-top: 1.25em;
+  font-weight: bold;
+  border-bottom: 2px solid #07a566;
   
 	@include MQ(M) {
 		font-size: 2rem;
 	}
 }
 
-.cd-schedule .event-date,
-.cd-schedule .event-venue {
+.film-video, 
+.film-description,
+.film-link {
+  margin-bottom: 0.35em;
+}
+
+.film-description {
+  margin-top: 0.35em;
+  line-height: 1.25em;
+}
+
+.film-date,
+.film-venue {
 	/* they are not included in the the HTML but added using JavScript */
 	font-size: 1.7rem;
 //  opacity: .7;
@@ -236,74 +232,74 @@ Main Components
   float: left;
 }
 
-.cd-schedule .event-venue {
+.film-venue {
   margin-left: 10px;
 }
 
-.cd-schedule .single-event[data-event="event-1"],
+.single-event[data-event="film-1"],
  {
-   .event-date, .event-venue {
+   .film-date, .film-venue {
      color: $event-color-1;     
    }
 }
 
-.cd-schedule [data-event="event-1"] .event-ticket {
+[data-event="film-1"] .film-ticket {
   background-color: $event-color-1;
 }
 
-.cd-schedule .single-event[data-event="event-2"] {
-  .event-date, .event-venue {
+.single-event[data-event="film-2"] {
+  .film-date, .film-venue {
     color: $event-color-2;     
   }
 }
 
-.cd-schedule [data-event="event-2"] .event-ticket {
+[data-event="film-2"] .film-ticket {
   background-color: $event-color-2;
 }
 
-.cd-schedule .single-event[data-event="event-3"] {
-  .event-date, .event-venue {
+.single-event[data-event="film-3"] {
+  .film-date, .film-venue {
     color: $event-color-3;     
   }  
 }
 
-.cd-schedule [data-event="event-3"] .event-ticket {
+[data-event="film-3"] .film-ticket {
   background-color: $event-color-3;
 }
 
 
-.cd-schedule .single-event[data-event="event-4"],
-.cd-schedule [data-event="event-4"] .header-bg {
+.single-event[data-event="film-4"],
+[data-event="film-4"] .header-bg {
 	color: $event-color-4;
 }
 
-.cd-schedule [data-event="event-4"] .event-ticket {
+[data-event="film-4"] .film-ticket {
   background-color: $event-color-4;
 }
 
 
-.cd-schedule .single-event[data-event="event-party"] {
-  .event-date, .event-venue {
+.single-event[data-event="film-party"] {
+  .film-date, .film-venue {
     color: $event-color-party;     
   }
 }
 
-.cd-schedule [data-event="event-party"] .event-ticket {
+[data-event="film-party"] .film-ticket {
   background-color: $event-color-party;
 }
 
-.cd-schedule .single-event[data-event="event-fair"] {
-  .event-date, .event-venue {
+.single-event[data-event="film-fair"] {
+  .film-date, .film-venue {
     color: $event-color-fair;     
   }
   
 }
 
-.cd-schedule [data-event="event-fair"] .event-ticket {
+[data-event="film-fair"] .film-ticket {
   background-color: $event-color-fair;
 }
 
-.event-modal {
+.film-modal {
 	position: fixed;
 	z-index: 3;
 	top: 0;
@@ -328,7 +324,7 @@ Main Components
   transition: transform .4s, visibility .4s;
   transition-timing-function: cubic-bezier(.5,0,.1,1);
   
-  .event-modal-wrapper {
+  .film-modal-wrapper {
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     height: 100%;
@@ -348,7 +344,7 @@ Main Components
   			vertical-align: middle;
   			padding: .6em 5%;
         
-        .event-ticket {
+        .film-ticket {
         	display: block;
           float: left;
         	color: white;
@@ -362,7 +358,7 @@ Main Components
           
         }
         
-        .event-date, .event-venue {
+        .film-date, .film-venue {
         	display: block;
         	color: white;
         	@include font-smoothing;
@@ -382,7 +378,7 @@ Main Components
   }
 
 
-	.event-info {
+	.film-info {
 		position: relative;
 		z-index: 2;
 		line-height: 1.4;
@@ -487,7 +483,7 @@ Main Components
 //      }
 //    }
 //
-//    .event-info > div {
+//    .film-info > div {
 //      padding: 2em 3em 2em 2em;
 //    }
 //
@@ -513,11 +509,11 @@ Main Components
 //      transform: none;
 //    }
 //
-//    .event-date {
+//    .film-date {
 //      display: block;
 //    }
 //
-//    .close, .event-info {
+//    .close, .film-info {
 //      opacity: 0;
 //    }
 //
@@ -543,13 +539,13 @@ Main Components
 body.modal-is-open {
   overflow: hidden;
   
-  .event-modal {
+  .film-modal {
   	/* .modal-is-open class is added as soon as an event is selected */
   	transform: translateX(0);
   	visibility: visible;
     background: white;
 
-  	.event-info > div {
+  	.film-info > div {
   		/* smooth scroll on iOS touch devices */
   		-webkit-overflow-scrolling: touch;
   	}
@@ -558,8 +554,8 @@ body.modal-is-open {
 
 
 @include MQ(M) {
-	.cd-schedule.animation-completed  .event-modal .close,
-	.cd-schedule.content-loaded.animation-completed  .event-modal .event-info {
+	.cd-schedule.animation-completed  .film-modal .close,
+	.cd-schedule.content-loaded.animation-completed  .film-modal .film-info {
 		/* 	the .animation-completed class is added when the modal animation is completed
 			the .content-loaded class is added when the modal content has been loaded (using ajax) */
 		opacity: 1;
@@ -573,7 +569,7 @@ body.modal-is-open {
 	}
 }
 
-.cd-schedule .cover-layer {
+.cover-layer {
 	/* layer between the content and the modal window */
 	position: fixed;
 	z-index: 2;

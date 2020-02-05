@@ -1,7 +1,7 @@
-Festival Tickets
+Festival Films
 =========
 
-Multi-day festival list of links to tickets , mobile ready.
+Festival films listing with trailers
 
 =========
 Based on schedule-template by CodyHouse.

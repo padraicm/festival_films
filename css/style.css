@@ -13,7 +13,7 @@ body {
   font-size: 1.6rem;
   font-family: "Source Sans Pro", sans-serif;
   color: #222222;
-  background-color: white; }
+  background-color: #07a566; }
 
 a {
   color: #4b2979;
@@ -25,7 +25,7 @@ a {
   text-align: center;
   font-size: 1.2em;
   background: #00cbff;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   background: #07a566; }
   .page-header a {
     color: #edfff0;
@@ -38,67 +38,62 @@ a {
     font-size: 1.5em;
     border-bottom: none; }
 
+.navigation {
+  font-size: 1.3em;
+  text-transform: uppercase;
+  background: #4b2979;
+  text-align: center;
+  margin-bottom: 10px; }
+  .navigation li {
+    display: inline-block;
+    padding: 10px; }
+    .navigation li a {
+      text-decoration: none;
+      color: #edfff0; }
+
 /* -------------------------------- 
 
 Main Components 
 
 -------------------------------- */
-.cd-schedule {
-  position: relative; }
-  .cd-schedule::before {
-    /* never visible - this is used in js to check the current MQ */
-    content: 'mobile';
-    display: none; }
+.container {
+  margin: 0 10%;
+  padding: 0.8em; }
 
-.cd-schedule .timeline {
-  display: none; }
-
-.cd-schedule .events {
+.films {
   position: relative;
-  z-index: 1; }
-  .cd-schedule .events .events-group {
-    margin-bottom: 30px; }
-  .cd-schedule .events .top-info {
-    width: 100%;
-    padding: 0 5%; }
-    .cd-schedule .events .top-info > span {
-      display: inline-block;
-      line-height: 1.2;
-      margin-bottom: 10px;
-      font-weight: bold; }
-  .cd-schedule .events .events-group > ul {
-    position: relative;
-    padding: 0 5%;
-    /* force its children to stay on one line */
-    display: block;
-    overflow-x: visible;
-    -webkit-overflow-scrolling: touch; }
-    .cd-schedule .events .events-group > ul::after {
-      /* never visible - used to add a right padding to .events-group > ul */
-      display: inline-block;
-      content: '-';
-      width: 1px;
-      height: 100%;
-      opacity: 0;
-      color: transparent; }
-  .cd-schedule .events .single-event {
-    /* force them to stay on one line */
-    flex-shrink: 0;
+  z-index: 1;
+  display: flex;
+  flex-flow: row wrap;
+  overflow-x: visible;
+  align-content: flex-end;
+  align-items: top;
+  justify-content: center; }
+  .films .film {
+    flex-shrink: 1;
+    background: white;
     float: left;
     min-height: 120px;
-    width: 100%;
+    min-width: 400px;
+    max-width: 500px;
     border: 1px solid rgba(0, 0, 0, 0.4);
     margin-right: 20px;
+    margin-bottom: 20px;
     transition: opacity .2s, background .2s;
-    margin-bottom: 5px;
-    background: white; }
-    .cd-schedule .events .single-event:last-of-type {
+    background: white;
+    padding: .8em;
+    box-shadow: 5px 5px 1px #4b2979; }
+    .films .film:last-of-type {
       margin-right: 5%; }
-    .cd-schedule .events .single-event .event-clickable {
+    .films .film .film-clickable {
       display: block;
-      height: 100%;
-      padding: .8em; }
-    .cd-schedule .events .single-event .event-ticket {
+      height: 100%; }
+    .films .film .film-ticket-name {
+      display: block;
+      float: right;
+      text-align: center;
+      padding: 8px 10px; }
+    .films .film .film-ticket {
       display: block;
       color: white;
       float: right;
@@ -111,103 +106,110 @@ Main Components
       -moz-osx-font-smoothing: grayscale; }
 
 .cd-schedule.loading .events .single-event {
-  /* the class .loading is added by default to the .cd-schedule element
+  /* the class .loading is added by default to the element
      it is removed as soon as the single events are placed in the schedule plan (using javascript) */
   opacity: 0; }
 
-.cd-schedule .event-name,
-.cd-schedule .event-date,
-.cd-schedule .event-venue,
-.cd-schedule .event-subline {
+.film-name,
+.film-date,
+.film-venue,
+.film-subline {
   display: block;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
-.cd-schedule .event-subline {
+.film-subline {
   font-size: 0.8em;
   font-style: italic; }
 
-.cd-schedule .event-data {
-  display: none; }
-
-.event-info {
+.film-info {
   font-size: 1.25em;
   padding: 20px 55px;
   word-break: break-word; }
-  .event-info p {
+  .film-info p {
     margin-bottom: 20px; }
-  .event-info title {
+  .film-info title {
     font-variant: italic;
     font-weight: bold;
     display: block; }
-  .event-info a {
+  .film-info a {
     margin-top: 10px;
     text-decoration: underline;
     color: #07a566; }
 
-.cd-schedule .event-name .event-time {
+.film-name .film-time {
   font-size: 1.6rem;
   display: block;
   margin-bottom: 12px;
   opacity: 0.7; }
 
-.cd-schedule .event-name {
+.film-name {
   font-size: 2.4rem;
   clear: both;
-  margin-top: 1.25em; }
+  font-weight: bold;
+  border-bottom: 2px solid #07a566; }
   @media only screen and (min-width: 800px) {
-    .cd-schedule .event-name {
+    .film-name {
       font-size: 2rem; } }
 
-.cd-schedule .event-date,
-.cd-schedule .event-venue {
+.film-video,
+.film-description,
+.film-link {
+  margin-bottom: 0.35em; }
+
+.film-description {
+  margin-top: 0.35em;
+  line-height: 1.25em; }
+
+.film-date,
+.film-venue {
   /* they are not included in the the HTML but added using JavScript */
   font-size: 1.7rem;
   line-height: 1.2;
   margin-bottom: .2em;
   float: left; }
 
-.cd-schedule .event-venue {
+.film-venue {
   margin-left: 10px; }
 
-.cd-schedule .single-event[data-event="event-1"] .event-date, .cd-schedule .single-event[data-event="event-1"] .event-venue {
+.single-event[data-event="film-1"] .film-date, .single-event[data-event="film-1"] .film-venue {
   color: #9a52fb; }
 
-.cd-schedule [data-event="event-1"] .event-ticket {
+[data-event="film-1"] .film-ticket {
   background-color: #9a52fb; }
 
-.cd-schedule .single-event[data-event="event-2"] .event-date, .cd-schedule .single-event[data-event="event-2"] .event-venue {
+.single-event[data-event="film-2"] .film-date, .single-event[data-event="film-2"] .film-venue {
   color: #be63d2; }
 
-.cd-schedule [data-event="event-2"] .event-ticket {
+[data-event="film-2"] .film-ticket {
   background-color: #be63d2; }
 
-.cd-schedule .single-event[data-event="event-3"] .event-date, .cd-schedule .single-event[data-event="event-3"] .event-venue {
+.single-event[data-event="film-3"] .film-date, .single-event[data-event="film-3"] .film-venue {
   color: #4b2979; }
 
-.cd-schedule [data-event="event-3"] .event-ticket {
+[data-event="film-3"] .film-ticket {
   background-color: #4b2979; }
 
-.cd-schedule .single-event[data-event="event-4"],
-.cd-schedule [data-event="event-4"] .header-bg {
+.single-event[data-event="film-4"],
+[data-event="film-4"] .header-bg {
   color: #4b2979; }
 
-.cd-schedule [data-event="event-4"] .event-ticket {
+[data-event="film-4"] .film-ticket {
   background-color: #4b2979; }
 
-.cd-schedule .single-event[data-event="event-party"] .event-date, .cd-schedule .single-event[data-event="event-party"] .event-venue {
+.single-event[data-event="film-party"] .film-date, .single-event[data-event="film-party"] .film-venue {
   color: #03ad7a; }
 
-.cd-schedule [data-event="event-party"] .event-ticket {
+[data-event="film-party"] .film-ticket {
   background-color: #03ad7a; }
 
-.cd-schedule .single-event[data-event="event-fair"] .event-date, .cd-schedule .single-event[data-event="event-fair"] .event-venue {
+.single-event[data-event="film-fair"] .film-date, .single-event[data-event="film-fair"] .film-venue {
   color: #2b91c1; }
 
-.cd-schedule [data-event="event-fair"] .event-ticket {
+[data-event="film-fair"] .film-ticket {
   background-color: #2b91c1; }
 
-.event-modal {
+.film-modal {
   position: fixed;
   z-index: 3;
   top: 0;
@@ -228,24 +230,24 @@ Main Components
   -o-transform: translateX(100%);
   transition: transform .4s, visibility .4s;
   transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1); }
-  .event-modal .event-modal-wrapper {
+  .film-modal .film-modal-wrapper {
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     height: 100%; }
-    .event-modal .event-modal-wrapper .header {
+    .film-modal .film-modal-wrapper .header {
       position: relative;
       height: 70px;
       /* vertically center its content */
       display: table;
       width: 100%; }
-      .event-modal .event-modal-wrapper .header .content {
+      .film-modal .film-modal-wrapper .header .content {
         position: relative;
         z-index: 3;
         /* vertically center inside its parent */
         display: table-cell;
         vertical-align: middle;
         padding: .6em 5%; }
-        .event-modal .event-modal-wrapper .header .content .event-ticket {
+        .film-modal .film-modal-wrapper .header .content .film-ticket {
           display: block;
           float: left;
           color: white;
@@ -255,41 +257,41 @@ Main Components
           margin-right: 10px;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale; }
-        .event-modal .event-modal-wrapper .header .content .event-date, .event-modal .event-modal-wrapper .header .content .event-venue {
+        .film-modal .film-modal-wrapper .header .content .film-date, .film-modal .film-modal-wrapper .header .content .film-venue {
           display: block;
           color: white;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale; }
-    .event-modal .event-modal-wrapper .body {
+    .film-modal .film-modal-wrapper .body {
       position: relative;
       width: 100%;
       min-height: 100%;
       /* 70px is the .header height */ }
-  .event-modal .event-info {
+  .film-modal .film-info {
     position: relative;
     z-index: 2;
     line-height: 1.4;
     background: white;
     overflow: visible; }
-    .event-modal .event-info > div {
+    .film-modal .film-info > div {
       overflow: auto;
       height: 100%;
       padding: 1.4em 5%; }
-  .event-modal .header-bg, .event-modal .body-bg {
+  .film-modal .header-bg, .film-modal .body-bg {
     /* these are the morphing backgrounds - visible on desktop only */
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%; }
-  .event-modal .body-bg {
+  .film-modal .body-bg {
     z-index: 1;
-    background: white;
+    background: #07a566;
     transform-origin: top left; }
-  .event-modal .header-bg {
+  .film-modal .header-bg {
     z-index: 2;
     transform-origin: top center; }
-  .event-modal .close {
+  .film-modal .close {
     /* this is the 'X' icon */
     position: absolute;
     top: 0;
@@ -302,7 +304,7 @@ Main Components
     text-indent: 100%;
     height: 70px;
     width: 70px; }
-    .event-modal .close::before, .event-modal .close::after {
+    .film-modal .close::before, .film-modal .close::after {
       /* these are the two lines of the 'X' icon */
       content: '';
       position: absolute;
@@ -310,32 +312,32 @@ Main Components
       left: 50%;
       width: 2px;
       height: 22px;
-      background: white;
+      background: #07a566;
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden; }
-    .event-modal .close::before {
+    .film-modal .close::before {
       transform: translateX(-50%) translateY(-50%) rotate(45deg); }
-    .event-modal .close::after {
+    .film-modal .close::after {
       transform: translateX(-50%) translateY(-50%) rotate(-45deg); }
-  .event-modal.no-transition {
+  .film-modal.no-transition {
     transition: none; }
-    .event-modal.no-transition .header-bg, .event-modal.no-transition .body-bg {
+    .film-modal.no-transition .header-bg, .film-modal.no-transition .body-bg {
       transition: none; }
 
 body.modal-is-open {
   overflow: hidden; }
-  body.modal-is-open .event-modal {
+  body.modal-is-open .film-modal {
     /* .modal-is-open class is added as soon as an event is selected */
     transform: translateX(0);
     visibility: visible;
     background: white; }
-    body.modal-is-open .event-modal .event-info > div {
+    body.modal-is-open .film-modal .film-info > div {
       /* smooth scroll on iOS touch devices */
       -webkit-overflow-scrolling: touch; }
 
 @media only screen and (min-width: 800px) {
-  .cd-schedule.animation-completed .event-modal .close,
-  .cd-schedule.content-loaded.animation-completed .event-modal .event-info {
+  .cd-schedule.animation-completed .film-modal .close,
+  .cd-schedule.content-loaded.animation-completed .film-modal .film-info {
     /* 	the .animation-completed class is added when the modal animation is completed
     	the .content-loaded class is added when the modal content has been loaded (using ajax) */
     opacity: 1;
@@ -345,7 +347,7 @@ body.modal-is-open {
     opacity: 1;
     transition: transform .4s;
     transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1); } }
-.cd-schedule .cover-layer {
+.cover-layer {
   /* layer between the content and the modal window */
   position: fixed;
   z-index: 2;
