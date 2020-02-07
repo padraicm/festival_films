@@ -26,17 +26,22 @@ a {
   font-size: 1.2em;
   background: #00cbff;
   margin-bottom: 0px;
-  background: #07a566; }
-  .page-header a {
+  background: #07a566;
+  background: black; }
+  .page-header .toplinks a {
     color: #edfff0;
     display: inline-block;
     margin: 0px 10px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.33); }
-  .page-header .title {
+  .page-header a.title {
     color: #edfff0;
+    display: none;
     text-shadow: 2px 2px 0px #9a52fb;
     font-size: 1.5em;
     border-bottom: none; }
+  .page-header .logo {
+    max-width: 100%;
+    padding: 0 100px; }
 
 .navigation {
   font-size: 1.3em;
@@ -68,7 +73,7 @@ Main Components
   overflow-x: visible;
   align-content: flex-end;
   align-items: top;
-  justify-content: center; }
+  justify-content: left; }
   .films .film {
     flex-shrink: 1;
     background: white;

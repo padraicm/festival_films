@@ -3,7 +3,7 @@ jQuery(document).ready(function($){
 	var transitionsSupported = ( $('.csstransitions').length > 0 );
 	if( !transitionsSupported ) transitionEnd = 'noTransition';
 	
-  var films;
+  window.films;
 
 	initEvents = function() {
 		var self = this;
@@ -42,7 +42,11 @@ jQuery(document).ready(function($){
   jQuery.ajax({
     url: 'https://raw.githubusercontent.com/padraicm/festival_tickets/master/data/films.json', 
     success: function( data, status, xhr ) {
-      films = JSON.parse(data).films.sort()
+      films = JSON.parse(data).films
+      films = films.sort(function(a, b) { 
+        return (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0)
+      });
+      console.log(films)
       initEvents();
     }
   });
