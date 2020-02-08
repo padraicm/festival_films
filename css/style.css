@@ -13,7 +13,7 @@ body {
   font-size: 1.6rem;
   font-family: "Source Sans Pro", sans-serif;
   color: #222222;
-  background-color: #07a566; }
+  background-color: #03ad7a; }
 
 a {
   color: #4b2979;
@@ -62,7 +62,7 @@ Main Components
 
 -------------------------------- */
 .container {
-  margin: 0 10%;
+  margin: auto 5%;
   padding: 0.8em; }
 
 .films {
@@ -76,11 +76,11 @@ Main Components
   justify-content: left; }
   .films .film {
     flex-shrink: 1;
+    flex-grow: 1;
     background: white;
     float: left;
     min-height: 120px;
-    min-width: 400px;
-    max-width: 500px;
+    max-width: 450px;
     border: 1px solid rgba(0, 0, 0, 0.4);
     margin-right: 20px;
     margin-bottom: 20px;
@@ -291,7 +291,7 @@ Main Components
     width: 100%; }
   .film-modal .body-bg {
     z-index: 1;
-    background: #07a566;
+    background: #03ad7a;
     transform-origin: top left; }
   .film-modal .header-bg {
     z-index: 2;
@@ -317,7 +317,7 @@ Main Components
       left: 50%;
       width: 2px;
       height: 22px;
-      background: #07a566;
+      background: #03ad7a;
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden; }
     .film-modal .close::before {
